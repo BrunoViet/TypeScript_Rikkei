@@ -1,72 +1,54 @@
-// //Bai 1
-// function findTwoSum(nums: number[], target: number): number[] | null {
-//   // Sắp xếp mảng nums
-//   let left = 0;
-//   let right = nums.length - 1;
-//   while (left < right) {
-//     const sum = nums[left] + nums[right];
-//     if (sum === target) {
-//       console.log(nums[right])
-//       return [nums.indexOf(nums[left]), nums.indexOf(nums[right])];
-//     } else if (sum < target) {
-//       left++;
-//     } else {
-//       right--;
-//     }
-//   }
+import readline from "readline";
+import { Student } from "./Models/Student";
+import { StudentManager } from "./StudentManager";
 
-//   return null;
-// }
+//Khởi tạo 1 instance của chức năng cho phép nhập giá trị từ bàn phím 
+let readLineInstance = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
 
-// // Sử dụng hàm findTwoSum
-// const nums = [2, 4, 25, 7, 4];
-// const target = 8;
-// const result1 = findTwoSum(nums, target);
-
-// if (result1) {
-//   console.log(result1);
-// } else {
-//   console.log("Không tìm thấy hai số thỏa mãn.");
-// }
-
-
-//Bai 2
-
-function isValid(s: string): boolean {
-  const stack: string[] = [];
-  const openBrackets = '([{';
-  const closeBrackets = ')]}';
-
-  for (const char of s) {
-    if (openBrackets.includes(char)) {
-      stack.push(char);
-    } else if (closeBrackets.includes(char)) {
-      const lastOpenBracket: any = stack.pop();
-      if (!lastOpenBracket || openBrackets.indexOf(lastOpenBracket) !== closeBrackets.indexOf(char)) {
-        return false;
-      }
-    }
-  }
-
-  return stack.length === 0;
+//Hàm để chạy chương trình
+function main() {
+    //Khởi tạo các thuộc tính và các chức năng nhập vào
+    readLineInstance.question("Vui long nhap: ", (action: string) => {
+        switch (action) {
+            //Thêm student
+            case "C":
+                //Tương tự
+                const student: Student = new Student(1, "HAHA", true, 28, "RA", "DN");
+                StudentManager.createStudent(student)
+                main()
+                break;
+            //Show toàn bộ student
+            case "R":
+                //Tương tự
+                StudentManager.showAllStudent()
+                main()
+                break;
+            //Cập nhật
+            case "U":
+                const student1: Student = new Student(1, "Abasbdabsdahsdh", true, 20, "RA1", "DN1");
+                //Gọi phương thức cập nhật student từ class StudentManager
+                StudentManager.updateStudent(1, student1)
+                main()
+                break;
+            //Xóa
+            case "D":
+                //Tương tự
+                StudentManager.deleteStudent(1)
+                main()
+                break;
+            case "E":
+                //Đóng chức năng nhập vào => thoát chương trình
+                readLineInstance.close();
+                break;
+            default:
+                console.log(action)
+                main()
+                break;
+        }
+    })
 }
 
-// Kiểm tra ví dụ
-const input = "{}[]";
-const result = isValid(input);
-console.log(result);
-
-//Cau 3
-// function isPalindrome(s: string): boolean {
-//   // Chuyển tất cả các chữ hoa thành chữ thường và loại bỏ ký tự không phải chữ và không phải số
-//   const cleanedString = s.toLowerCase().replace(/[^a-z0-9]/g, '');
-
-//   // So sánh chuỗi gốc với chuỗi đảo ngược
-//   return cleanedString === cleanedString.split('').reverse().join('');
-// }
-
-// // Kiểm tra hàm với một ví dụ
-// const inputString = "A man, a plan, a canal, Panama";
-// const result3 = isPalindrome(inputString);
-// console.log(result3); // Kết quả sẽ là true
-
+main()
