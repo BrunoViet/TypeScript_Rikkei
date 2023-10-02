@@ -1,4 +1,5 @@
 export class Student {
+    //Private chỉ cho truy cập trong phạm vi class
     private studentId: number;
 
     private studentName: string;
@@ -11,6 +12,7 @@ export class Student {
 
     private address: string;
 
+    //Hàm khởi tạo
     constructor(studentId: number, studentName: string, sex: boolean,
         age: number, address: string, className: string) {
         this.studentId = studentId;
@@ -74,6 +76,7 @@ export class Student {
         this.address = address;
     }
 
+    //Phương thức để nhập các dữ liệu cho student
     public inputData(data: Student): void {
         this.studentId = data.studentId;
         this.studentName = data.studentName;
@@ -83,7 +86,7 @@ export class Student {
         this.className = data.className;
     }
 
-
+    //phương thức để show hết mọi thông tin student ra
     public displayData(): void {
         console.log(this)
     }
