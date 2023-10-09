@@ -1,54 +1,53 @@
-import readline from "readline";
-import { Student } from "./Models/Student";
-import { StudentManager } from "./StudentManager";
+import readline from "readline"
+import { CarManager } from "./CarManager"
+import { Cars } from "./Models/Cars"
 
-//Khởi tạo 1 instance của chức năng cho phép nhập giá trị từ bàn phím 
 let readLineInstance = readline.createInterface({
     input: process.stdin,
     output: process.stdout
-});
+})
 
-//Hàm để chạy chương trình
+
+
 function main() {
-    //Khởi tạo các thuộc tính và các chức năng nhập vào
-    readLineInstance.question("Vui long nhap: ", (action: string) => {
-        switch (action) {
-            //Thêm student
-            case "C":
-                //Tương tự
-                const student: Student = new Student(1, "HAHA", true, 28, "RA", "DN");
-                StudentManager.createStudent(student)
-                main()
-                break;
-            //Show toàn bộ student
-            case "R":
-                //Tương tự
-                StudentManager.showAllStudent()
-                main()
-                break;
-            //Cập nhật
-            case "U":
-                const student1: Student = new Student(1, "Abasbdabsdahsdh", true, 20, "RA1", "DN1");
-                //Gọi phương thức cập nhật student từ class StudentManager
-                StudentManager.updateStudent(1, student1)
-                main()
-                break;
-            //Xóa
-            case "D":
-                //Tương tự
-                StudentManager.deleteStudent(1)
-                main()
-                break;
-            case "E":
-                //Đóng chức năng nhập vào => thoát chương trình
-                readLineInstance.close();
-                break;
-            default:
-                console.log(action)
-                main()
-                break;
-        }
-    })
+    let name = prompt("nhap", "Hello")
+    console.log(name)
+
+
+    // readLineInstance.question("Vui long nhap: ", (action: string) => {
+    //     while (action != "E") {
+    //         if (action == "R") {
+
+    //             CarManager.showAllCar()
+    //             main()
+    //             break
+    //         } else if (action == "C") {
+    //             const newCar: Cars = new Cars(1,
+    //                 "Tesla",
+    //                 142800,
+    //                 "White",
+    //                 "SUV")
+    //             CarManager.createCar(newCar)
+    //             main()
+    //             break;
+    //         } else if (action == "U") {
+    //             const updateCar: Cars = new Cars(1, "ASDadsasd",
+    //                 123123, "Black", "RR"
+    //             )
+
+    //             CarManager.updateCar(1, updateCar)
+    //             main()
+    //             break;
+    //         } else if (action == "D") {
+    //             CarManager.deleteCar(1)
+    //             main()
+    //             break;
+    //         }
+    //     }
+
+    //     readLineInstance.close()
+
+    // })
 }
 
 main()
