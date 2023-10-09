@@ -1,0 +1,7 @@
+//config để dùng được decorator
+{
+    "compilerOptions": {
+      "target": "ES5",
+      "experimentalDecorators": true
+    }
+}
